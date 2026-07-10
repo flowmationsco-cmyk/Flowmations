@@ -173,6 +173,26 @@ a { color: var(--blue); }
   gap: 14px;
   margin-top: 32px;
 }
+.hero-trust {
+  list-style: none;
+  margin: 28px 0 0;
+  padding: 0;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px 26px;
+  font-size: 0.88rem;
+  font-weight: 600;
+  color: var(--ink-soft);
+}
+.hero-trust li::before {
+  content: "✓";
+  font-weight: 800;
+  margin-right: 8px;
+  background: var(--grad);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
 .hero-art { display: flex; justify-content: center; }
 .hero-mark {
   width: min(300px, 60vw);
@@ -195,7 +215,7 @@ a { color: var(--blue); }
 }
 .stats-grid {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
+  grid-template-columns: repeat(4, 1fr);
   gap: 40px;
 }
 .stat p { color: rgba(255, 255, 255, 0.8); max-width: 26ch; }
@@ -253,6 +273,119 @@ a { color: var(--blue); }
 .card:hover::before { opacity: 1; }
 .card h3 { margin-bottom: 10px; }
 .card p { color: var(--ink-soft); font-size: 0.95rem; }
+.card .card-stat {
+  display: inline-block;
+  margin-top: 16px;
+  font-size: 0.78rem;
+  font-weight: 700;
+  color: var(--blue);
+  background: var(--ground-alt);
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  padding: 4px 12px;
+}
+
+/* ---------- Cost calculator ---------- */
+
+.calc {
+  display: grid;
+  grid-template-columns: minmax(0, 1.1fr) minmax(0, 1fr);
+  gap: 48px;
+  align-items: center;
+}
+.calc-controls label {
+  display: block;
+  font-weight: 700;
+  margin-bottom: 36px;
+}
+.calc-controls label:last-child { margin-bottom: 0; }
+.calc-controls output {
+  float: right;
+  font-weight: 800;
+  font-variant-numeric: tabular-nums;
+  color: var(--blue);
+}
+.calc-controls input[type="range"] {
+  display: block;
+  width: 100%;
+  margin-top: 14px;
+  accent-color: var(--blue);
+  cursor: pointer;
+}
+.calc-result {
+  background: var(--ground);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  padding: 36px 32px;
+  text-align: center;
+}
+.calc-label {
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  font-size: 0.72rem;
+  font-weight: 700;
+  color: var(--ink-soft);
+}
+.calc-num {
+  font-size: clamp(2.6rem, 5vw, 3.6rem);
+  font-weight: 800;
+  letter-spacing: -0.03em;
+  font-variant-numeric: tabular-nums;
+  background: var(--grad);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  margin: 4px 0 2px;
+}
+.calc-sub { color: var(--ink-soft); }
+.calc-note {
+  margin-top: 16px;
+  padding-top: 16px;
+  border-top: 1px solid var(--line);
+  font-size: 0.88rem;
+  color: var(--ink-soft);
+}
+
+/* ---------- Versus (with / without) ---------- */
+
+.versus { background: var(--ink); }
+.versus h2 { color: #fff; }
+.versus .section-head p { color: rgba(255, 255, 255, 0.72); }
+.versus-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 24px;
+}
+.versus-col {
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  border-radius: var(--radius);
+  padding: 30px 28px;
+}
+.versus-col h3 { color: rgba(255, 255, 255, 0.92); margin-bottom: 18px; }
+.versus-with {
+  border: 2px solid transparent;
+  background:
+    linear-gradient(#26215A, #26215A) padding-box,
+    var(--grad) border-box;
+}
+.versus-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  gap: 14px;
+  font-size: 0.95rem;
+  color: rgba(255, 255, 255, 0.78);
+}
+.versus-list li { position: relative; padding-left: 26px; }
+.versus-list li::before {
+  position: absolute;
+  left: 0;
+  font-weight: 800;
+}
+.vs-without li::before { content: "✗"; color: rgba(255, 255, 255, 0.38); }
+.vs-with li::before { content: "✓"; color: var(--teal); }
 
 /* ---------- Steps ---------- */
 
@@ -476,6 +609,8 @@ a { color: var(--blue); }
 
 @media (max-width: 900px) {
   .cards, .tiers, .steps, .stats-grid { grid-template-columns: 1fr 1fr; }
+  .calc, .versus-grid { grid-template-columns: 1fr; }
+  .calc { gap: 32px; }
   .hero-grid { grid-template-columns: 1fr; }
   .hero-art { order: -1; }
   .hero-mark { width: min(180px, 40vw); }

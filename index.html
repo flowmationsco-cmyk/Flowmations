@@ -59,6 +59,11 @@
           <a class="btn btn-primary" href="#contact">Get a quote</a>
           <a class="btn btn-ghost" href="#services">See what we build</a>
         </div>
+        <ul class="hero-trust">
+          <li>Live in 1–2 weeks</li>
+          <li>Month-to-month, no contracts</li>
+          <li>Works with your existing tools</li>
+        </ul>
       </div>
       <div class="hero-art reveal" aria-hidden="true">
         <svg viewBox="0 0 100 100" class="hero-mark"><use href="#flowMark"/></svg>
@@ -76,6 +81,11 @@
           <cite>411 Locals</cite>
         </div>
         <div class="stat reveal">
+          <span class="stat-num">21×</span>
+          <p>more likely to win the lead when you respond in 5 minutes, not 30</p>
+          <cite>Lead Response Management Study</cite>
+        </div>
+        <div class="stat reveal">
           <span class="stat-num">78%</span>
           <p>of customers buy from the business that responds first</p>
           <cite>Lead Connect</cite>
@@ -84,6 +94,33 @@
           <span class="stat-num">98%</span>
           <p>of people read online reviews before choosing a local business</p>
           <cite>BrightLocal</cite>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section section-alt" id="cost">
+    <div class="container">
+      <div class="section-head reveal">
+        <h2>What's the leak costing <span class="grad-text">you</span>?</h2>
+        <p>Drag the sliders. Even assuming only 1 in 4 missed calls would have booked, the number gets uncomfortable fast.</p>
+      </div>
+      <div class="calc reveal">
+        <div class="calc-controls">
+          <label for="calcCalls">Missed calls per week
+            <output id="calcCallsOut" for="calcCalls">5</output>
+            <input type="range" id="calcCalls" min="1" max="30" value="5">
+          </label>
+          <label for="calcValue">Average job value
+            <output id="calcValueOut" for="calcValue">$350</output>
+            <input type="range" id="calcValue" min="100" max="2000" step="50" value="350">
+          </label>
+        </div>
+        <div class="calc-result" role="status" aria-live="polite">
+          <p class="calc-label">Revenue walking away</p>
+          <p class="calc-num" id="calcMonthly">$0</p>
+          <p class="calc-sub">every month — <strong id="calcYearly">$0</strong> a year</p>
+          <p class="calc-note" id="calcCompare"></p>
         </div>
       </div>
     </div>
@@ -99,26 +136,32 @@
         <article class="card reveal">
           <h3>Missed-Call Recovery</h3>
           <p>A call goes to voicemail and the customer instantly gets a text: “Sorry we missed you — how can we help?” The lead stays yours instead of dialing the next company on Google.</p>
+          <p class="card-stat">Texts back in under 60 seconds</p>
         </article>
         <article class="card reveal">
           <h3>Review Requests</h3>
           <p>After every finished job, your customer gets a friendly nudge to leave a Google review. More stars means more calls — on autopilot.</p>
+          <p class="card-stat">One extra star ≈ 5–9% more revenue</p>
         </article>
         <article class="card reveal">
           <h3>Lead Follow-Up</h3>
           <p>Quotes that went quiet get polite, automatic follow-ups until they answer. No lead dies in a spreadsheet again.</p>
+          <p class="card-stat">80% of sales take 5+ touches — most stop at one</p>
         </article>
         <article class="card reveal">
           <h3>Appointment Reminders</h3>
           <p>“Your tech arrives tomorrow between 9–11 — reply C to confirm.” Fewer no-shows, fewer wasted truck rolls.</p>
+          <p class="card-stat">Text reminders cut no-shows by up to 38%</p>
         </article>
         <article class="card reveal">
           <h3>Seasonal Campaigns</h3>
           <p>Spring AC tune-ups. Fall furnace checks. Automatic campaigns to your past customers that turn an old job list into repeat revenue.</p>
+          <p class="card-stat">Repeat customers spend up to 67% more</p>
         </article>
         <article class="card reveal">
           <h3>Invoice Reminders</h3>
           <p>Unpaid invoices get chased politely and automatically — you get paid without ever making the awkward call.</p>
+          <p class="card-stat">Reminded invoices get paid about twice as fast</p>
         </article>
       </div>
     </div>
@@ -147,6 +190,37 @@
           <p>Your monthly plan covers monitoring, fixes, and tweaks as your business changes. Set it — and actually forget it.</p>
         </li>
       </ol>
+    </div>
+  </section>
+
+  <section class="section versus" id="difference">
+    <div class="container">
+      <div class="section-head reveal">
+        <h2>The same Tuesday, twice</h2>
+        <p>What actually changes when the busy work runs itself.</p>
+      </div>
+      <div class="versus-grid">
+        <div class="versus-col reveal">
+          <h3>Without Flowmations</h3>
+          <ul class="versus-list vs-without">
+            <li>Phone rings out while you're on a rooftop — the lead dials the next company on Google</li>
+            <li>A $4,000 quote sits at “sent” for three weeks, then goes cold</li>
+            <li>The 9 a.m. no-show costs a truck roll and half the morning</li>
+            <li>“We should really ask for reviews” — nobody ever does</li>
+            <li>Sunday night: you, a spreadsheet, and a stack of unpaid invoices</li>
+          </ul>
+        </div>
+        <div class="versus-col versus-with reveal">
+          <h3>With Flowmations</h3>
+          <ul class="versus-list vs-with">
+            <li>The missed call gets a text back in under a minute — the lead stays yours</li>
+            <li>Quiet quotes get followed up automatically until they answer</li>
+            <li>Customers confirm appointments with a one-letter reply</li>
+            <li>Every finished job asks for its own five-star review</li>
+            <li>Invoices chase themselves — Sunday nights are yours again</li>
+          </ul>
+        </div>
+      </div>
     </div>
   </section>
 
@@ -235,6 +309,10 @@
         <details>
           <summary>Do I need to be technical?</summary>
           <p>No. If you can read a text message, you can use everything we build. Setup happens on our side.</p>
+        </details>
+        <details>
+          <summary>How fast does it pay for itself?</summary>
+          <p>Starter is $150 a month. If your average job is worth a few hundred dollars, one recovered call a month covers it — the calculator above does the napkin math with your own numbers. Everything past that first job is money you were leaving on the table.</p>
         </details>
         <details>
           <summary>Is there a contract?</summary>
