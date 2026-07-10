@@ -1,0 +1,297 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Flowmations — Automation for HVAC &amp; Home-Service Companies</title>
+<meta name="description" content="Flowmations builds automations that recover missed calls, chase quotes, and keep your schedule full — so the busy work runs itself.">
+<link rel="icon" href='data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><linearGradient id="g" x1="0" y1="100" x2="100" y2="0" gradientUnits="userSpaceOnUse"><stop offset="0" stop-color="%2335D0C0"/><stop offset=".55" stop-color="%233D7BF7"/><stop offset="1" stop-color="%238B5CF6"/></linearGradient></defs><g fill="none" stroke="url(%23g)" stroke-width="17" stroke-linecap="round"><path d="M16 82 C 48 92, 66 74, 60 52"/><path d="M84 18 C 52 8, 34 26, 40 48"/></g><circle cx="16" cy="82" r="11" fill="url(%23g)"/><circle cx="84" cy="18" r="11" fill="url(%23g)"/></svg>'>
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+<!-- The S-mark, drawn once and reused everywhere via <use> -->
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <defs>
+    <linearGradient id="flowGrad" x1="0" y1="100" x2="100" y2="0" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#35D0C0"/>
+      <stop offset="0.55" stop-color="#3D7BF7"/>
+      <stop offset="1" stop-color="#8B5CF6"/>
+    </linearGradient>
+    <g id="flowMark">
+      <g fill="none" stroke="url(#flowGrad)" stroke-width="17" stroke-linecap="round">
+        <path d="M16 82 C 48 92, 66 74, 60 52"/>
+        <path d="M84 18 C 52 8, 34 26, 40 48"/>
+      </g>
+      <circle cx="16" cy="82" r="11" fill="url(#flowGrad)"/>
+      <circle cx="84" cy="18" r="11" fill="url(#flowGrad)"/>
+    </g>
+  </defs>
+</svg>
+
+<header class="nav" id="top">
+  <div class="nav-inner">
+    <a class="nav-logo" href="#top" aria-label="Flowmations home">
+      <svg viewBox="0 0 100 100" width="34" height="34"><use href="#flowMark"/></svg>
+    </a>
+    <nav class="nav-links" id="navLinks" aria-label="Main">
+      <a href="#services">Services</a>
+      <a href="#pricing">Pricing</a>
+      <a href="#about">About</a>
+      <a href="#faq">FAQ</a>
+      <a href="#contact" class="btn btn-small btn-primary">Get a quote</a>
+    </nav>
+    <button class="nav-toggle" id="navToggle" aria-expanded="false" aria-controls="navLinks" aria-label="Menu">
+      <span></span><span></span>
+    </button>
+  </div>
+</header>
+
+<main>
+
+  <section class="hero">
+    <div class="container hero-grid">
+      <div class="hero-copy reveal">
+        <p class="eyebrow">Automation for HVAC &amp; home-service companies</p>
+        <h1>Never miss another <span class="grad-text">lead</span>.</h1>
+        <p class="lede">Every unanswered call is a job your competitor booked. Flowmations builds the systems that recover missed calls, chase quiet quotes, and keep your schedule full — so the busy work runs itself and the money keeps flowing.</p>
+        <div class="hero-cta">
+          <a class="btn btn-primary" href="#contact">Get a quote</a>
+          <a class="btn btn-ghost" href="#services">See what we build</a>
+        </div>
+      </div>
+      <div class="hero-art reveal" aria-hidden="true">
+        <svg viewBox="0 0 100 100" class="hero-mark"><use href="#flowMark"/></svg>
+      </div>
+    </div>
+  </section>
+
+  <section class="stats">
+    <div class="container">
+      <p class="stats-intro reveal">The math is simple.</p>
+      <div class="stats-grid">
+        <div class="stat reveal">
+          <span class="stat-num">62%</span>
+          <p>of calls to small businesses go unanswered</p>
+          <cite>411 Locals</cite>
+        </div>
+        <div class="stat reveal">
+          <span class="stat-num">78%</span>
+          <p>of customers buy from the business that responds first</p>
+          <cite>Lead Connect</cite>
+        </div>
+        <div class="stat reveal">
+          <span class="stat-num">98%</span>
+          <p>of people read online reviews before choosing a local business</p>
+          <cite>BrightLocal</cite>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="services">
+    <div class="container">
+      <div class="section-head reveal">
+        <h2>Six systems. Nothing slips.</h2>
+        <p>Each one targets a specific place where service companies leak money. Run the three you need, or all six together.</p>
+      </div>
+      <div class="cards">
+        <article class="card reveal">
+          <h3>Missed-Call Recovery</h3>
+          <p>A call goes to voicemail and the customer instantly gets a text: “Sorry we missed you — how can we help?” The lead stays yours instead of dialing the next company on Google.</p>
+        </article>
+        <article class="card reveal">
+          <h3>Review Requests</h3>
+          <p>After every finished job, your customer gets a friendly nudge to leave a Google review. More stars means more calls — on autopilot.</p>
+        </article>
+        <article class="card reveal">
+          <h3>Lead Follow-Up</h3>
+          <p>Quotes that went quiet get polite, automatic follow-ups until they answer. No lead dies in a spreadsheet again.</p>
+        </article>
+        <article class="card reveal">
+          <h3>Appointment Reminders</h3>
+          <p>“Your tech arrives tomorrow between 9–11 — reply C to confirm.” Fewer no-shows, fewer wasted truck rolls.</p>
+        </article>
+        <article class="card reveal">
+          <h3>Seasonal Campaigns</h3>
+          <p>Spring AC tune-ups. Fall furnace checks. Automatic campaigns to your past customers that turn an old job list into repeat revenue.</p>
+        </article>
+        <article class="card reveal">
+          <h3>Invoice Reminders</h3>
+          <p>Unpaid invoices get chased politely and automatically — you get paid without ever making the awkward call.</p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <section class="section section-alt" id="how">
+    <div class="container">
+      <div class="section-head reveal">
+        <h2>How it works</h2>
+        <p>No rip-and-replace. No 40-page onboarding doc. Three steps.</p>
+      </div>
+      <ol class="steps">
+        <li class="step reveal">
+          <span class="step-num">1</span>
+          <h3>We look at how you work</h3>
+          <p>A short call about how jobs, calls, and invoices actually move through your business today — and where they slip.</p>
+        </li>
+        <li class="step reveal">
+          <span class="step-num">2</span>
+          <h3>We build around your tools</h3>
+          <p>Your phone system, your scheduler, your invoicing stay exactly where they are. We connect them and fill the gaps.</p>
+        </li>
+        <li class="step reveal">
+          <span class="step-num">3</span>
+          <h3>We keep it running</h3>
+          <p>Your monthly plan covers monitoring, fixes, and tweaks as your business changes. Set it — and actually forget it.</p>
+        </li>
+      </ol>
+    </div>
+  </section>
+
+  <section class="section" id="pricing">
+    <div class="container">
+      <div class="section-head reveal">
+        <h2>Simple pricing, locked for life</h2>
+        <p>Founding-client rate: the price you sign at is the price you keep, for as long as you stay.</p>
+      </div>
+      <!-- Prices live only in this section — edit them here and nowhere else. -->
+      <div class="tiers">
+        <article class="tier reveal">
+          <h3>Starter</h3>
+          <p class="tier-desc">Missed-Call Recovery only. The low-risk first step.</p>
+          <p class="tier-price">$300 <span>setup</span></p>
+          <p class="tier-monthly">+ $150/month</p>
+          <ul>
+            <li>Instant text-back on every missed call</li>
+            <li>Works with your existing phone number</li>
+            <li>One recovered job a month pays for it</li>
+          </ul>
+          <a class="btn btn-ghost btn-block" href="#contact">Start here</a>
+        </article>
+        <article class="tier tier-featured reveal">
+          <p class="tier-badge">Most popular</p>
+          <h3>Growth</h3>
+          <p class="tier-desc">Pick any 3 of our 6 systems — we’ll help you choose.</p>
+          <p class="tier-price">$800 <span>setup</span></p>
+          <p class="tier-monthly">+ $300/month</p>
+          <ul>
+            <li>Any 3 systems, built for your workflow</li>
+            <li>Monitoring, fixes &amp; tweaks included</li>
+            <li>Swap a system as your needs change</li>
+          </ul>
+          <a class="btn btn-primary btn-block" href="#contact">Get a quote</a>
+        </article>
+        <article class="tier reveal">
+          <h3>Full Flow</h3>
+          <p class="tier-desc">All 6 systems. The whole leak, plugged.</p>
+          <p class="tier-price">$1,200 <span>setup</span></p>
+          <p class="tier-monthly">+ $500/month</p>
+          <ul>
+            <li>Every system, working together</li>
+            <li>Best value per system</li>
+            <li>Priority support</li>
+          </ul>
+          <a class="btn btn-ghost btn-block" href="#contact">Go all in</a>
+        </article>
+      </div>
+      <p class="pricing-note reveal">Month-to-month after setup. No long contracts, no cancellation fees.</p>
+    </div>
+  </section>
+
+  <section class="section section-alt" id="about">
+    <div class="container about-grid">
+      <div class="about-mark reveal" aria-hidden="true">
+        <svg viewBox="0 0 100 100" width="120" height="120"><use href="#flowMark"/></svg>
+      </div>
+      <div class="about-copy reveal">
+        <h2>About Flowmations</h2>
+        <p>Flowmations is an automation studio in Eugene, Oregon, founded by <strong>Ryder Bianchini</strong> and <strong>Eli Whittaker</strong>. It started with a simple observation: service companies lose real money to busy work that has an easy fix — calls that ring out, quotes nobody chases, invoices that sit unpaid for weeks.</p>
+        <p>We build the systems that fix it, and we keep them running. We’re a small team by design: you talk directly to the people who build your automations, and your business is never ticket&nbsp;#4,872.</p>
+        <p>We work with HVAC and home-service companies in Oregon first — but if you’re further out and want the busy work gone, we’re listening.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="faq">
+    <div class="container container-narrow">
+      <div class="section-head reveal">
+        <h2>Questions, answered</h2>
+      </div>
+      <div class="faq-list reveal">
+        <details>
+          <summary>Will this mess with the software I already use?</summary>
+          <p>No. We build around your existing tools — your phone system, scheduler, and invoicing stay exactly as they are. Our systems connect to them; they don’t replace them.</p>
+        </details>
+        <details>
+          <summary>How long does setup take?</summary>
+          <p>Most systems are live within one to two weeks of the kickoff call. You’ll see the first recovered lead before the first invoice.</p>
+        </details>
+        <details>
+          <summary>What if something breaks?</summary>
+          <p>Your monthly plan covers monitoring and fixes — we usually know something’s off before you do, and it’s our job to fix it, not yours.</p>
+        </details>
+        <details>
+          <summary>Do I need to be technical?</summary>
+          <p>No. If you can read a text message, you can use everything we build. Setup happens on our side.</p>
+        </details>
+        <details>
+          <summary>Is there a contract?</summary>
+          <p>Month-to-month after setup. Your founding-client rate stays locked for as long as you stay — leave whenever you want, though we don’t think you’ll want to.</p>
+        </details>
+        <details>
+          <summary>How do I pick my 3 systems on the Growth plan?</summary>
+          <p>We recommend based on where your audit shows the biggest leak. Most companies start with Missed-Call Recovery, Review Requests, and Lead Follow-Up.</p>
+        </details>
+      </div>
+    </div>
+  </section>
+
+  <section class="section contact" id="contact">
+    <div class="container container-narrow">
+      <div class="section-head reveal">
+        <h2>Tell us where the busy work is</h2>
+        <p>We’ll tell you what it costs to kill it. No pitch deck, no pressure — just a straight answer.</p>
+      </div>
+      <form id="contactForm" class="contact-form reveal">
+        <div class="form-row">
+          <label>Your name
+            <input type="text" name="name" required autocomplete="name">
+          </label>
+          <label>Company
+            <input type="text" name="company" autocomplete="organization">
+          </label>
+        </div>
+        <label>Email
+          <input type="email" name="email" required autocomplete="email">
+        </label>
+        <label>What’s slipping through the cracks?
+          <textarea name="message" rows="4" placeholder="e.g. We miss calls when the techs are out, and I never have time to follow up on quotes…"></textarea>
+        </label>
+        <button type="submit" class="btn btn-primary">Send it</button>
+        <p class="contact-alt">Prefer email? <a id="mailLink" href="#">Write to us directly</a>.</p>
+      </form>
+    </div>
+  </section>
+
+</main>
+
+<footer class="footer">
+  <div class="container footer-inner">
+    <div class="footer-brand">
+      <svg viewBox="0 0 100 100" width="28" height="28" aria-hidden="true"><use href="#flowMark"/></svg>
+      <span>The busy work, killed.</span>
+    </div>
+    <p class="footer-meta">Eugene, Oregon · <a id="footerMail" href="#">Email us</a></p>
+    <!-- Social links: swap # for real profiles when the accounts exist -->
+    <p class="footer-meta footer-social">
+      <a href="#" rel="noopener">Instagram</a> · <a href="#" rel="noopener">Facebook</a>
+    </p>
+    <p class="footer-meta">© <span id="year"></span> Flowmations</p>
+  </div>
+</footer>
+
+<script src="js/site.js"></script>
+</body>
+</html>

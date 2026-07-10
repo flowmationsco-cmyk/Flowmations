@@ -1,0 +1,557 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Flowmations Website Questionnaire</title>
+<style>
+  :root {
+    --ground: #F6FAF9;
+    --surface: #FFFFFF;
+    --ink: #0F2A2D;
+    --ink-soft: #4A6367;
+    --line: #D8E6E3;
+    --accent: #0E9E8E;
+    --accent-ink: #0B7568;
+    --accent-wash: #E2F3F0;
+    --signal: #FF6B5E;
+    --signal-ink: #FFFFFF;
+    --mono-bg: #0F2A2D;
+    --mono-ink: #C9EFE9;
+    --focus: #2E6FD8;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --ground: #0C1B1E;
+      --surface: #12262A;
+      --ink: #E8F2F0;
+      --ink-soft: #9DB8B4;
+      --line: #24413F;
+      --accent: #2FC9B6;
+      --accent-ink: #5FDECC;
+      --accent-wash: #163732;
+      --signal: #FF7A6E;
+      --mono-bg: #081416;
+      --mono-ink: #9FE8DD;
+      --focus: #7FA9F0;
+    }
+  }
+  :root[data-theme="light"] {
+    --ground: #F6FAF9;
+    --surface: #FFFFFF;
+    --ink: #0F2A2D;
+    --ink-soft: #4A6367;
+    --line: #D8E6E3;
+    --accent: #0E9E8E;
+    --accent-ink: #0B7568;
+    --accent-wash: #E2F3F0;
+    --signal: #FF6B5E;
+    --mono-bg: #0F2A2D;
+    --mono-ink: #C9EFE9;
+    --focus: #2E6FD8;
+  }
+  :root[data-theme="dark"] {
+    --ground: #0C1B1E;
+    --surface: #12262A;
+    --ink: #E8F2F0;
+    --ink-soft: #9DB8B4;
+    --line: #24413F;
+    --accent: #2FC9B6;
+    --accent-ink: #5FDECC;
+    --accent-wash: #163732;
+    --signal: #FF7A6E;
+    --mono-bg: #081416;
+    --mono-ink: #9FE8DD;
+    --focus: #7FA9F0;
+  }
+
+  body {
+    background: var(--ground);
+    color: var(--ink);
+    font-family: system-ui, -apple-system, "Segoe UI", sans-serif;
+    line-height: 1.55;
+    margin: 0;
+  }
+  .wrap {
+    max-width: 680px;
+    margin: 0 auto;
+    padding: 40px 20px 96px;
+  }
+
+  .brand {
+    font-family: "Avenir Next", "Trebuchet MS", system-ui, sans-serif;
+    font-weight: 800;
+    font-size: clamp(2rem, 6vw, 2.8rem);
+    letter-spacing: -0.02em;
+    margin: 0;
+    text-wrap: balance;
+  }
+  .brand .flow { color: var(--accent); }
+  .wave {
+    display: block;
+    width: 140px;
+    height: 12px;
+    margin-top: 6px;
+    color: var(--accent);
+  }
+  .kicker {
+    text-transform: uppercase;
+    letter-spacing: 0.14em;
+    font-size: 0.72rem;
+    font-weight: 700;
+    color: var(--accent-ink);
+    margin: 0 0 8px;
+  }
+  .intro {
+    color: var(--ink-soft);
+    max-width: 58ch;
+    margin: 16px 0 0;
+  }
+
+  .progress {
+    position: sticky;
+    top: 0;
+    z-index: 5;
+    background: var(--ground);
+    padding: 12px 0;
+    margin-top: 28px;
+    border-bottom: 1px solid var(--line);
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    font-size: 0.85rem;
+    font-weight: 600;
+    color: var(--ink-soft);
+  }
+  .progress .bar {
+    flex: 1;
+    height: 6px;
+    border-radius: 999px;
+    background: var(--line);
+    overflow: hidden;
+  }
+  .progress .bar i {
+    display: block;
+    height: 100%;
+    width: 0%;
+    background: var(--accent);
+    border-radius: 999px;
+    transition: width 200ms ease;
+  }
+  .progress .count { font-variant-numeric: tabular-nums; white-space: nowrap; }
+
+  section.q {
+    background: var(--surface);
+    border: 1px solid var(--line);
+    border-radius: 10px;
+    padding: 24px 24px 28px;
+    margin-top: 24px;
+  }
+  .q-head {
+    display: flex;
+    align-items: baseline;
+    gap: 12px;
+    margin: 0 0 4px;
+  }
+  .q-num {
+    font-family: "Avenir Next", "Trebuchet MS", system-ui, sans-serif;
+    font-weight: 800;
+    font-size: 0.85rem;
+    color: var(--accent-ink);
+    font-variant-numeric: tabular-nums;
+  }
+  .q h2 {
+    font-family: "Avenir Next", "Trebuchet MS", system-ui, sans-serif;
+    font-size: 1.25rem;
+    font-weight: 700;
+    letter-spacing: -0.01em;
+    margin: 0;
+    text-wrap: balance;
+  }
+  .q .why {
+    color: var(--ink-soft);
+    font-size: 0.9rem;
+    margin: 4px 0 18px;
+    max-width: 58ch;
+  }
+
+  .field { margin-top: 16px; }
+  .field > label, .field > .grouplabel {
+    display: block;
+    font-weight: 600;
+    font-size: 0.95rem;
+    margin-bottom: 6px;
+  }
+  input[type="text"], textarea {
+    width: 100%;
+    box-sizing: border-box;
+    font: inherit;
+    color: var(--ink);
+    background: var(--ground);
+    border: 1px solid var(--line);
+    border-radius: 8px;
+    padding: 10px 12px;
+  }
+  textarea { min-height: 84px; resize: vertical; }
+  input[type="text"]:focus, textarea:focus,
+  input[type="checkbox"]:focus-visible, input[type="radio"]:focus-visible {
+    outline: 2px solid var(--focus);
+    outline-offset: 1px;
+  }
+
+  .choices {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+  .choices label {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    border: 1px solid var(--line);
+    background: var(--ground);
+    border-radius: 999px;
+    padding: 8px 14px;
+    font-size: 0.92rem;
+    cursor: pointer;
+    user-select: none;
+  }
+  .choices label:has(:checked) {
+    background: var(--accent-wash);
+    border-color: var(--accent);
+    color: var(--accent-ink);
+    font-weight: 600;
+  }
+  .choices input { accent-color: var(--accent); margin: 0; }
+
+  .actions {
+    margin-top: 36px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+    align-items: center;
+  }
+  button {
+    font: inherit;
+    font-weight: 700;
+    border: none;
+    border-radius: 8px;
+    padding: 12px 20px;
+    cursor: pointer;
+  }
+  #copyBtn {
+    background: var(--signal);
+    color: var(--signal-ink);
+  }
+  #copyBtn:hover { filter: brightness(1.06); }
+  #resetBtn {
+    background: transparent;
+    color: var(--ink-soft);
+    border: 1px solid var(--line);
+    font-weight: 600;
+  }
+  button:focus-visible { outline: 2px solid var(--focus); outline-offset: 2px; }
+  .saved-note { font-size: 0.82rem; color: var(--ink-soft); }
+
+  #summaryBox {
+    display: none;
+    margin-top: 20px;
+  }
+  #summaryBox.show { display: block; }
+  #summaryBox h3 { margin: 0 0 8px; font-size: 1rem; }
+  #summary {
+    background: var(--mono-bg);
+    color: var(--mono-ink);
+    font-family: ui-monospace, "SF Mono", Menlo, Consolas, monospace;
+    font-size: 0.82rem;
+    line-height: 1.6;
+    border-radius: 10px;
+    padding: 18px;
+    white-space: pre-wrap;
+    overflow-x: auto;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .progress .bar i { transition: none; }
+  }
+</style>
+</head>
+<body>
+
+<div class="wrap">
+  <header>
+    <p class="kicker">Website planning · Step 1</p>
+    <h1 class="brand">The <span class="flow">Flowmations</span> Questionnaire</h1>
+    <svg class="wave" viewBox="0 0 140 12" fill="none" aria-hidden="true">
+      <path d="M0 6 Q 8.75 0, 17.5 6 T 35 6 T 52.5 6 T 70 6 T 87.5 6 T 105 6 T 122.5 6 T 140 6"
+            stroke="currentColor" stroke-width="2.5" stroke-linecap="round"/>
+    </svg>
+    <p class="intro">Answer as many of these as you can — skip anything you're not sure about. Your answers save automatically in this browser. When you're done, hit <strong>Copy my answers</strong> at the bottom and paste them back to Claude, and we'll design the site around them.</p>
+  </header>
+
+  <div class="progress" role="status">
+    <div class="bar"><i id="progressFill"></i></div>
+    <span class="count"><span id="answeredCount">0</span> of <span id="totalCount">0</span> answered</span>
+  </div>
+
+  <form id="qform" autocomplete="off">
+
+    <section class="q">
+      <div class="q-head"><span class="q-num">1</span><h2>The company</h2></div>
+      <p class="why">This becomes the words on your homepage, so be real — no marketing-speak needed.</p>
+      <div class="field">
+        <label for="what">What does Flowmations actually do or make?</label>
+        <textarea id="what" name="What Flowmations does" placeholder="e.g. We make animated videos for local businesses… we build automations… we sell…"></textarea>
+      </div>
+      <div class="field">
+        <label for="who">Who's in the company, and what does each person do?</label>
+        <textarea id="who" name="Who's in the company" placeholder="e.g. Me (Ryder) — I do the editing. Jake does the…"></textarea>
+      </div>
+      <div class="field">
+        <label for="story">How did Flowmations start? (One or two sentences is plenty.)</label>
+        <textarea id="story" name="Origin story"></textarea>
+      </div>
+    </section>
+
+    <section class="q">
+      <div class="q-head"><span class="q-num">2</span><h2>The website's one job</h2></div>
+      <p class="why">Every good website has one main job. Everything else on the site supports it.</p>
+      <div class="field">
+        <span class="grouplabel">When someone visits the site, what's the #1 thing you want to happen?</span>
+        <div class="choices">
+          <label><input type="radio" name="Main goal" value="They contact us / hire us"> They contact us or hire us</label>
+          <label><input type="radio" name="Main goal" value="They see our work and get impressed"> They see our work and get impressed</label>
+          <label><input type="radio" name="Main goal" value="They buy something"> They buy something</label>
+          <label><input type="radio" name="Main goal" value="They learn what we do and remember us"> They learn what we do and remember us</label>
+        </div>
+      </div>
+      <div class="field">
+        <label for="success">How will you know the website is working? What would success look like in 6 months?</label>
+        <textarea id="success" name="What success looks like" placeholder="e.g. 3 paying customers found us through the site"></textarea>
+      </div>
+    </section>
+
+    <section class="q">
+      <div class="q-head"><span class="q-num">3</span><h2>Who's it for</h2></div>
+      <p class="why">A site for local business owners looks totally different from a site for other teens.</p>
+      <div class="field">
+        <label for="audience">Describe your ideal visitor. Who are they, how old, what do they care about?</label>
+        <textarea id="audience" name="Ideal visitor"></textarea>
+      </div>
+      <div class="field">
+        <span class="grouplabel">How will people mostly find the site?</span>
+        <div class="choices">
+          <label><input type="checkbox" name="How people find it" value="We tell them / word of mouth"> We tell them / word of mouth</label>
+          <label><input type="checkbox" name="How people find it" value="Social media links"> Social media links</label>
+          <label><input type="checkbox" name="How people find it" value="Google search"> Google search</label>
+          <label><input type="checkbox" name="How people find it" value="Business cards / flyers"> Business cards / flyers</label>
+        </div>
+      </div>
+    </section>
+
+    <section class="q">
+      <div class="q-head"><span class="q-num">4</span><h2>Pages &amp; content</h2></div>
+      <p class="why">Start small — you can always add pages later. Most sites only need 3 or 4.</p>
+      <div class="field">
+        <span class="grouplabel">Which pages do you want? (Pick the ones you'd actually fill with content.)</span>
+        <div class="choices">
+          <label><input type="checkbox" name="Pages" value="Home"> Home</label>
+          <label><input type="checkbox" name="Pages" value="About / the team"> About / the team</label>
+          <label><input type="checkbox" name="Pages" value="Services / what we offer"> Services / what we offer</label>
+          <label><input type="checkbox" name="Pages" value="Portfolio / our work"> Portfolio / our work</label>
+          <label><input type="checkbox" name="Pages" value="Pricing"> Pricing</label>
+          <label><input type="checkbox" name="Pages" value="Contact"> Contact</label>
+          <label><input type="checkbox" name="Pages" value="FAQ"> FAQ</label>
+          <label><input type="checkbox" name="Pages" value="Blog / updates"> Blog / updates</label>
+        </div>
+      </div>
+      <div class="field">
+        <span class="grouplabel">What content do you already have, right now?</span>
+        <div class="choices">
+          <label><input type="checkbox" name="Content we already have" value="A logo"> A logo</label>
+          <label><input type="checkbox" name="Content we already have" value="Photos"> Photos</label>
+          <label><input type="checkbox" name="Content we already have" value="Videos / examples of our work"> Videos / examples of our work</label>
+          <label><input type="checkbox" name="Content we already have" value="Written text about us"> Written text about us</label>
+          <label><input type="checkbox" name="Content we already have" value="Nothing yet — starting from scratch"> Nothing yet — starting from scratch</label>
+        </div>
+      </div>
+    </section>
+
+    <section class="q">
+      <div class="q-head"><span class="q-num">5</span><h2>Look &amp; feel</h2></div>
+      <p class="why">This is the fun part. There are no wrong answers — gut feelings count.</p>
+      <div class="field">
+        <span class="grouplabel">What vibe should the site have? (Pick up to 2.)</span>
+        <div class="choices">
+          <label><input type="checkbox" name="Vibe" value="Bold and energetic"> Bold &amp; energetic</label>
+          <label><input type="checkbox" name="Vibe" value="Clean and minimal"> Clean &amp; minimal</label>
+          <label><input type="checkbox" name="Vibe" value="Playful and fun"> Playful &amp; fun</label>
+          <label><input type="checkbox" name="Vibe" value="Dark and techy"> Dark &amp; techy</label>
+          <label><input type="checkbox" name="Vibe" value="Professional and trustworthy"> Professional &amp; trustworthy</label>
+        </div>
+      </div>
+      <div class="field">
+        <label for="colors">Any colors you love (or hate)? Does Flowmations have brand colors already?</label>
+        <input type="text" id="colors" name="Colors" placeholder="e.g. love teal and orange, hate brown">
+      </div>
+      <div class="field">
+        <label for="inspo">Name 1–3 websites you think look awesome — and say what you like about each.</label>
+        <textarea id="inspo" name="Inspiration sites" placeholder="e.g. apple.com — super clean. mrbeast.store — bold and loud."></textarea>
+      </div>
+    </section>
+
+    <section class="q">
+      <div class="q-head"><span class="q-num">6</span><h2>Features</h2></div>
+      <p class="why">Each feature adds work, so only pick ones that help the site do its #1 job from question 2.</p>
+      <div class="field">
+        <span class="grouplabel">What should the site be able to do?</span>
+        <div class="choices">
+          <label><input type="checkbox" name="Features" value="Contact form"> Contact form</label>
+          <label><input type="checkbox" name="Features" value="Photo gallery"> Photo gallery</label>
+          <label><input type="checkbox" name="Features" value="Embedded videos"> Embedded videos</label>
+          <label><input type="checkbox" name="Features" value="Links to our social media"> Social media links</label>
+          <label><input type="checkbox" name="Features" value="Booking / scheduling"> Booking / scheduling</label>
+          <label><input type="checkbox" name="Features" value="Taking payments"> Taking payments</label>
+          <label><input type="checkbox" name="Features" value="Email signup list"> Email signup list</label>
+        </div>
+      </div>
+    </section>
+
+    <section class="q">
+      <div class="q-head"><span class="q-num">7</span><h2>Practical stuff</h2></div>
+      <p class="why">Boring but important — these decide where the site lives and what it costs.</p>
+      <div class="field">
+        <label for="domain">Do you want a custom web address (like flowmations.com)? Any name ideas?</label>
+        <input type="text" id="domain" name="Domain ideas">
+      </div>
+      <div class="field">
+        <span class="grouplabel">Who will update the site after it launches?</span>
+        <div class="choices">
+          <label><input type="radio" name="Who updates it" value="Me, with Claude Code"> Me, with Claude Code</label>
+          <label><input type="radio" name="Who updates it" value="Someone else on the team"> Someone else on the team</label>
+          <label><input type="radio" name="Who updates it" value="Rarely — set it and forget it"> Rarely — set it &amp; forget it</label>
+        </div>
+      </div>
+      <div class="field">
+        <label for="deadline">Any deadline or event you want the site ready for?</label>
+        <input type="text" id="deadline" name="Deadline">
+      </div>
+      <div class="field">
+        <label for="anything">Anything else we should know?</label>
+        <textarea id="anything" name="Anything else"></textarea>
+      </div>
+    </section>
+
+    <div class="actions">
+      <button type="button" id="copyBtn">Copy my answers</button>
+      <button type="button" id="resetBtn">Clear everything</button>
+      <span class="saved-note" id="savedNote">Answers save automatically in this browser.</span>
+    </div>
+
+    <div id="summaryBox">
+      <h3>Your answers — copied! Paste them to Claude:</h3>
+      <pre id="summary"></pre>
+    </div>
+  </form>
+</div>
+
+<script>
+(function () {
+  var form = document.getElementById('qform');
+  var STORE_KEY = 'flowmations-questionnaire-v1';
+
+  function fields() {
+    return Array.prototype.slice.call(form.querySelectorAll('input, textarea'));
+  }
+  function questionNames() {
+    var seen = [];
+    fields().forEach(function (el) {
+      if (el.name && seen.indexOf(el.name) === -1) seen.push(el.name);
+    });
+    return seen;
+  }
+  function valueFor(name) {
+    var els = fields().filter(function (el) { return el.name === name; });
+    var first = els[0];
+    if (first.type === 'checkbox' || first.type === 'radio') {
+      return els.filter(function (el) { return el.checked; })
+                .map(function (el) { return el.value; }).join(', ');
+    }
+    return first.value.trim();
+  }
+
+  function save() {
+    var data = {};
+    fields().forEach(function (el, i) {
+      if (el.type === 'checkbox' || el.type === 'radio') data['f' + i] = el.checked;
+      else data['f' + i] = el.value;
+    });
+    try { localStorage.setItem(STORE_KEY, JSON.stringify(data)); } catch (e) {}
+  }
+  function load() {
+    var raw;
+    try { raw = localStorage.getItem(STORE_KEY); } catch (e) {}
+    if (!raw) return;
+    var data;
+    try { data = JSON.parse(raw); } catch (e) { return; }
+    fields().forEach(function (el, i) {
+      if (!(('f' + i) in data)) return;
+      if (el.type === 'checkbox' || el.type === 'radio') el.checked = !!data['f' + i];
+      else el.value = data['f' + i];
+    });
+  }
+
+  function updateProgress() {
+    var names = questionNames();
+    var answered = names.filter(function (n) { return valueFor(n) !== ''; }).length;
+    document.getElementById('answeredCount').textContent = answered;
+    document.getElementById('totalCount').textContent = names.length;
+    document.getElementById('progressFill').style.width =
+      (names.length ? Math.round(answered / names.length * 100) : 0) + '%';
+  }
+
+  function buildSummary() {
+    var lines = ['FLOWMATIONS WEBSITE QUESTIONNAIRE — MY ANSWERS', ''];
+    questionNames().forEach(function (n) {
+      var v = valueFor(n);
+      lines.push(n + ': ' + (v === '' ? '(skipped)' : v));
+    });
+    return lines.join('\n');
+  }
+
+  form.addEventListener('input', function () { save(); updateProgress(); });
+
+  document.getElementById('copyBtn').addEventListener('click', function () {
+    var text = buildSummary();
+    var box = document.getElementById('summaryBox');
+    var pre = document.getElementById('summary');
+    pre.textContent = text;
+    box.classList.add('show');
+    var heading = box.querySelector('h3');
+    function done(ok) {
+      heading.textContent = ok
+        ? 'Your answers — copied! Paste them to Claude:'
+        : 'Copy didn’t work — select the text below and copy it yourself:';
+    }
+    if (navigator.clipboard && navigator.clipboard.writeText) {
+      navigator.clipboard.writeText(text).then(function () { done(true); },
+                                               function () { done(false); });
+    } else { done(false); }
+    box.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+  });
+
+  document.getElementById('resetBtn').addEventListener('click', function () {
+    if (!confirm('Clear all your answers?')) return;
+    form.reset();
+    try { localStorage.removeItem(STORE_KEY); } catch (e) {}
+    document.getElementById('summaryBox').classList.remove('show');
+    updateProgress();
+  });
+
+  load();
+  updateProgress();
+})();
+</script>
+
+</body>
+</html>
