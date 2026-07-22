@@ -589,6 +589,198 @@ a { color: var(--blue); }
 .footer-meta { color: var(--ink-soft); font-size: 0.88rem; }
 .footer-meta a { color: var(--ink-soft); }
 
+/* ---------- Survey (leak check) ---------- */
+
+.survey-hero { padding: 72px 0 36px; }
+.survey-hero .lede { margin-top: 18px; }
+
+.survey-progress {
+  position: sticky;
+  top: 59px; /* sits just under the sticky nav */
+  z-index: 40;
+  background: rgba(255, 255, 255, 0.92);
+  backdrop-filter: blur(12px);
+  border-bottom: 1px solid var(--line);
+  padding: 12px 0;
+}
+.survey-progress-inner {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+.survey-bar {
+  flex: 1;
+  height: 6px;
+  border-radius: 999px;
+  background: var(--line);
+  overflow: hidden;
+}
+.survey-bar i {
+  display: block;
+  height: 100%;
+  width: 0%;
+  background: var(--grad);
+  border-radius: 999px;
+  transition: width 200ms ease;
+}
+.survey-count {
+  font-size: 0.85rem;
+  font-weight: 700;
+  color: var(--ink-soft);
+  font-variant-numeric: tabular-nums;
+  white-space: nowrap;
+}
+
+.survey-body { padding: 40px 0 96px; }
+.survey-form { display: grid; gap: 18px; }
+
+.q-card {
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  background: var(--ground);
+  padding: 26px 24px 28px;
+}
+.q-top {
+  display: flex;
+  align-items: baseline;
+  gap: 14px;
+  margin-bottom: 16px;
+}
+.q-top h2 {
+  font-size: 1.15rem;
+  font-weight: 700;
+  letter-spacing: -0.01em;
+}
+.q-num {
+  flex-shrink: 0;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  background: var(--grad);
+  color: #fff;
+  font-weight: 800;
+  font-size: 0.85rem;
+  transform: translateY(5px);
+}
+.q-hint {
+  color: var(--ink-soft);
+  font-size: 0.9rem;
+  margin: -8px 0 16px;
+}
+.q-required {
+  font-size: 0.68rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: #fff;
+  background: var(--grad);
+  border-radius: 999px;
+  padding: 3px 10px;
+  vertical-align: middle;
+  white-space: nowrap;
+}
+
+.q-card input[type="text"],
+.q-card input[type="tel"] {
+  width: 100%;
+  font: inherit;
+  color: var(--ink);
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  padding: 11px 14px;
+  background: var(--ground-alt);
+}
+.q-card input[type="text"]:focus,
+.q-card input[type="tel"]:focus {
+  outline: 2px solid var(--blue);
+  outline-offset: 1px;
+  border-color: var(--blue);
+}
+
+.pills {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+.pills label {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  border: 1px solid var(--line);
+  background: var(--ground-alt);
+  border-radius: 999px;
+  padding: 9px 16px;
+  font-size: 0.92rem;
+  font-weight: 600;
+  color: var(--ink-soft);
+  cursor: pointer;
+  user-select: none;
+  transition: border-color 120ms ease, color 120ms ease, background 120ms ease;
+}
+.pills label:hover { border-color: var(--blue); }
+.pills label:has(:checked) {
+  background: var(--ink);
+  border-color: var(--ink);
+  color: #fff;
+}
+.pills input {
+  accent-color: var(--blue);
+  margin: 0;
+}
+.pills input:focus-visible { outline: 2px solid var(--blue); outline-offset: 2px; }
+
+.q-card-final {
+  border: 2px solid transparent;
+  background:
+    linear-gradient(var(--ground), var(--ground)) padding-box,
+    var(--grad) border-box;
+  box-shadow: var(--shadow);
+}
+.q-final-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 18px;
+}
+.q-final-row label {
+  display: grid;
+  gap: 6px;
+  font-weight: 600;
+  font-size: 0.92rem;
+}
+.q-error {
+  margin-top: 14px;
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: #D14343;
+}
+
+.survey-actions {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 16px;
+  margin-top: 14px;
+}
+.survey-note { font-size: 0.88rem; color: var(--ink-soft); }
+
+.survey-done {
+  margin-top: 8px;
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  background: var(--ground-alt);
+  padding: 24px;
+}
+.survey-done h3 { margin-bottom: 8px; }
+.survey-done p { color: var(--ink-soft); font-size: 0.95rem; }
+
+@media (max-width: 640px) {
+  .q-final-row { grid-template-columns: 1fr; }
+  .survey-progress { top: 58px; }
+}
+
 /* ---------- Reveal on scroll ---------- */
 
 .reveal {

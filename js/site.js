@@ -1,5 +1,4 @@
-// TODO: swap this placeholder for the real Flowmations contact email.
-var CONTACT_EMAIL = "youremail@example.com";
+var CONTACT_EMAIL = "Flowmations.co@gmail.com";
 
 // Wire the direct-email links
 document.querySelectorAll("#mailLink, #footerMail").forEach(function (a) {

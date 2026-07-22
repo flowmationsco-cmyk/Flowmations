@@ -1,0 +1,188 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Where's your business leaking? — Free 2-minute check | Flowmations</title>
+<meta name="description" content="Answer honestly — we'll text you a free breakdown of what the leaks are costing you per year. No spam, no strings. Flowmations, Eugene OR.">
+<link rel="icon" href='data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><linearGradient id="g" x1="0" y1="100" x2="100" y2="0" gradientUnits="userSpaceOnUse"><stop offset="0" stop-color="%2335D0C0"/><stop offset=".55" stop-color="%233D7BF7"/><stop offset="1" stop-color="%238B5CF6"/></linearGradient></defs><g fill="none" stroke="url(%23g)" stroke-width="17" stroke-linecap="round"><path d="M16 82 C 48 92, 66 74, 60 52"/><path d="M84 18 C 52 8, 34 26, 40 48"/></g><circle cx="16" cy="82" r="11" fill="url(%23g)"/><circle cx="84" cy="18" r="11" fill="url(%23g)"/></svg>'>
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+<!-- The S-mark, drawn once and reused everywhere via <use> -->
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <defs>
+    <linearGradient id="flowGrad" x1="0" y1="100" x2="100" y2="0" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#35D0C0"/>
+      <stop offset="0.55" stop-color="#3D7BF7"/>
+      <stop offset="1" stop-color="#8B5CF6"/>
+    </linearGradient>
+    <g id="flowMark">
+      <g fill="none" stroke="url(#flowGrad)" stroke-width="17" stroke-linecap="round">
+        <path d="M16 82 C 48 92, 66 74, 60 52"/>
+        <path d="M84 18 C 52 8, 34 26, 40 48"/>
+      </g>
+      <circle cx="16" cy="82" r="11" fill="url(#flowGrad)"/>
+      <circle cx="84" cy="18" r="11" fill="url(#flowGrad)"/>
+    </g>
+  </defs>
+</svg>
+
+<header class="nav">
+  <div class="nav-inner">
+    <a class="nav-logo" href="index.html" aria-label="Flowmations home">
+      <svg viewBox="0 0 100 100" width="34" height="34"><use href="#flowMark"/></svg>
+    </a>
+    <nav class="nav-links" aria-label="Main">
+      <a href="index.html#services">Services</a>
+      <a href="index.html#pricing">Pricing</a>
+      <a href="index.html#contact" class="btn btn-small btn-primary">Get a quote</a>
+    </nav>
+  </div>
+</header>
+
+<main>
+
+  <section class="survey-hero">
+    <div class="container container-narrow">
+      <p class="eyebrow">Free 2-minute check</p>
+      <h1>Where's your business <span class="grad-text">leaking</span>?</h1>
+      <p class="lede">Answer honestly — we'll text you a free breakdown of what the leaks are costing you per year. No spam, no strings.</p>
+    </div>
+  </section>
+
+  <div class="survey-progress" role="status">
+    <div class="container container-narrow survey-progress-inner">
+      <div class="survey-bar"><i id="progressFill"></i></div>
+      <span class="survey-count"><span id="answeredCount">0</span> of <span id="totalCount">9</span></span>
+    </div>
+  </div>
+
+  <section class="survey-body">
+    <div class="container container-narrow">
+      <form id="surveyForm" class="survey-form" autocomplete="off" novalidate>
+
+        <section class="q-card">
+          <div class="q-top"><span class="q-num">1</span><h2>Business name</h2></div>
+          <input type="text" name="Business name" placeholder="e.g. Riverside Cuts" aria-label="Business name">
+        </section>
+
+        <section class="q-card">
+          <div class="q-top"><span class="q-num">2</span><h2>What kind of business are you?</h2></div>
+          <div class="pills">
+            <label><input type="radio" name="Kind of business" value="Salon / barber / spa"> Salon / barber / spa</label>
+            <label><input type="radio" name="Kind of business" value="HVAC / plumbing / trades"> HVAC / plumbing / trades</label>
+            <label><input type="radio" name="Kind of business" value="Fitness / studio"> Fitness / studio</label>
+            <label><input type="radio" name="Kind of business" value="Restaurant / food"> Restaurant / food</label>
+            <label><input type="radio" name="Kind of business" value="Other"> Other</label>
+          </div>
+        </section>
+
+        <section class="q-card">
+          <div class="q-top"><span class="q-num">3</span><h2>What happens when someone calls while you're with a customer?</h2></div>
+          <div class="pills">
+            <label><input type="radio" name="When someone calls mid-customer" value="Goes to voicemail"> Goes to voicemail</label>
+            <label><input type="radio" name="When someone calls mid-customer" value="Just rings out"> Just rings out</label>
+            <label><input type="radio" name="When someone calls mid-customer" value="Someone else answers"> Someone else answers</label>
+            <label><input type="radio" name="When someone calls mid-customer" value="We try to call back later"> We try to call back later</label>
+          </div>
+        </section>
+
+        <section class="q-card">
+          <div class="q-top"><span class="q-num">4</span><h2>How many calls or booking requests would you guess you miss per week?</h2></div>
+          <div class="pills">
+            <label><input type="radio" name="Missed calls per week" value="0–2"> 0–2</label>
+            <label><input type="radio" name="Missed calls per week" value="3–5"> 3–5</label>
+            <label><input type="radio" name="Missed calls per week" value="6–10"> 6–10</label>
+            <label><input type="radio" name="Missed calls per week" value="More than 10"> More than 10</label>
+            <label><input type="radio" name="Missed calls per week" value="Honestly, no idea"> Honestly, no idea</label>
+          </div>
+        </section>
+
+        <section class="q-card">
+          <div class="q-top"><span class="q-num">5</span><h2>What's an average visit or job worth to you?</h2></div>
+          <div class="pills">
+            <label><input type="radio" name="Average visit or job worth" value="Under $50"> Under $50</label>
+            <label><input type="radio" name="Average visit or job worth" value="$50–$100"> $50–$100</label>
+            <label><input type="radio" name="Average visit or job worth" value="$100–$300"> $100–$300</label>
+            <label><input type="radio" name="Average visit or job worth" value="$300+"> $300+</label>
+          </div>
+        </section>
+
+        <section class="q-card">
+          <div class="q-top"><span class="q-num">6</span><h2>No-shows in a typical week?</h2></div>
+          <div class="pills">
+            <label><input type="radio" name="No-shows per week" value="None"> None</label>
+            <label><input type="radio" name="No-shows per week" value="1–2"> 1–2</label>
+            <label><input type="radio" name="No-shows per week" value="3–5"> 3–5</label>
+            <label><input type="radio" name="No-shows per week" value="More than 5"> More than 5</label>
+          </div>
+        </section>
+
+        <section class="q-card">
+          <div class="q-top"><span class="q-num">7</span><h2>Do you ask customers for Google reviews?</h2></div>
+          <div class="pills">
+            <label><input type="radio" name="Ask for Google reviews" value="Every time, automatically"> Every time, automatically</label>
+            <label><input type="radio" name="Ask for Google reviews" value="When we remember"> When we remember</label>
+            <label><input type="radio" name="Ask for Google reviews" value="Rarely or never"> Rarely or never</label>
+          </div>
+        </section>
+
+        <section class="q-card">
+          <div class="q-top"><span class="q-num">8</span><h2>Which of these annoys you the most?</h2></div>
+          <p class="q-hint">Pick as many as you like.</p>
+          <div class="pills">
+            <label><input type="checkbox" name="Biggest annoyances" value="Missed calls"> Missed calls</label>
+            <label><input type="checkbox" name="Biggest annoyances" value="No-shows"> No-shows</label>
+            <label><input type="checkbox" name="Biggest annoyances" value="Chasing unpaid invoices"> Chasing unpaid invoices</label>
+            <label><input type="checkbox" name="Biggest annoyances" value="Quotes that go quiet"> Quotes that go quiet</label>
+            <label><input type="checkbox" name="Biggest annoyances" value="Getting reviews"> Getting reviews</label>
+            <label><input type="checkbox" name="Biggest annoyances" value="Customers not rebooking"> Customers not rebooking</label>
+          </div>
+        </section>
+
+        <section class="q-card q-card-final">
+          <div class="q-top"><span class="q-num">9</span><h2>Your name + best number to text your free leak report to <span class="q-required">required</span></h2></div>
+          <p class="q-hint">We text you a plain-English breakdown of your numbers. That's it.</p>
+          <div class="q-final-row">
+            <label>Your name
+              <input type="text" name="Your name" required autocomplete="name">
+            </label>
+            <label>Best number to text
+              <input type="tel" name="Best number to text" required autocomplete="tel" placeholder="(541) 555-0100">
+            </label>
+          </div>
+          <p class="q-error" id="finalError" hidden>We need your name and number to text you the report.</p>
+        </section>
+
+        <div class="survey-actions">
+          <button type="submit" class="btn btn-primary">Text me my free leak report</button>
+          <span class="survey-note">Free, no spam, no strings. — Flowmations, Eugene OR</span>
+        </div>
+
+        <div class="survey-done" id="doneBox" hidden>
+          <h3>Got it — check your email app.</h3>
+          <p>We've opened a pre-filled email with your answers. Hit send and your free leak report is on its way. If nothing opened, email your answers to <a id="doneMail" href="#">us directly</a>.</p>
+        </div>
+
+      </form>
+    </div>
+  </section>
+
+</main>
+
+<footer class="footer">
+  <div class="container footer-inner">
+    <div class="footer-brand">
+      <svg viewBox="0 0 100 100" width="28" height="28" aria-hidden="true"><use href="#flowMark"/></svg>
+      <span>The busy work, killed.</span>
+    </div>
+    <p class="footer-meta">Eugene, Oregon · <a id="footerMail" href="#">Email us</a></p>
+    <p class="footer-meta">© <span id="year"></span> Flowmations</p>
+  </div>
+</footer>
+
+<script src="js/survey.js"></script>
+</body>
+</html>
