@@ -50,10 +50,10 @@ if (calcCalls && calcValue) {
     var monthly = Math.round(calls * 4.33 * 0.25 * value);
     document.getElementById("calcMonthly").textContent = fmtUSD(monthly);
     document.getElementById("calcYearly").textContent = fmtUSD(monthly * 12);
-    var mult = monthly / 150;
+    var mult = monthly / 300;
     document.getElementById("calcCompare").textContent = mult >= 2
-      ? "That’s " + Math.round(mult) + "× the monthly cost of the Starter plan."
-      : "The Starter plan is $150/month — one saved job covers it.";
+      ? "That’s " + Math.round(mult) + "× the monthly cost of the Growth plan."
+      : "The Growth plan is $300/month — a couple of saved jobs cover it.";
   };
   calcCalls.addEventListener("input", updateCalc);
   calcValue.addEventListener("input", updateCalc);

@@ -1,11 +1,13 @@
-// Leak-check survey: saves answers in the browser, tracks progress, and
-// submits by composing an email (same no-backend pattern as the contact form).
+// Leak-check survey: saves answers in the browser, tracks progress, shows an
+// instant leak estimate on submit, and emails a copy of the answers to the
+// founders via FormSubmit (free relay, no backend needed).
 var CONTACT_EMAIL = "Flowmations.co@gmail.com";
+var RELAY_URL = "https://formsubmit.co/ajax/" + CONTACT_EMAIL;
 
 var form = document.getElementById("surveyForm");
 var STORE_KEY = "flowmations-leak-survey-v1";
 
-document.querySelectorAll("#footerMail, #doneMail").forEach(function (a) {
+document.querySelectorAll("#footerMail").forEach(function (a) {
   a.href = "mailto:" + CONTACT_EMAIL;
   a.title = CONTACT_EMAIL;
 });
@@ -74,6 +76,40 @@ function updateProgress() {
     Math.round(answered / groups.length * 100) + "%";
 }
 
+// Conservative napkin math: only 1 in 4 missed calls would have booked,
+// and only half of no-shows are truly lost.
+var CALLS_PER_WEEK = { "0–2": 1, "3–5": 4, "6–10": 8, "More than 10": 12, "Honestly, no idea": 5 };
+var JOB_VALUE = { "Under $50": 35, "$50–$100": 75, "$100–$300": 200, "$300+": 400 };
+var NOSHOWS_PER_WEEK = { "None": 0, "1–2": 1.5, "3–5": 4, "More than 5": 6 };
+
+function fmtUSD(n) { return "$" + Math.round(n).toLocaleString("en-US"); }
+
+function buildEstimate() {
+  var calls = CALLS_PER_WEEK[valueFor("Missed calls per week")];
+  var value = JOB_VALUE[valueFor("Average visit or job worth")];
+  var noshows = NOSHOWS_PER_WEEK[valueFor("No-shows per week")];
+  var reviews = valueFor("Ask for Google reviews");
+
+  var lines = [];
+  var total = 0;
+  if (calls !== undefined && value !== undefined) {
+    var missedYear = calls * 52 * 0.25 * value;
+    total += missedYear;
+    lines.push("Missed calls: about " + fmtUSD(missedYear) +
+      " a year, even assuming only 1 in 4 would have booked.");
+  }
+  if (noshows !== undefined && value !== undefined && noshows > 0) {
+    var noshowYear = noshows * 52 * 0.5 * value;
+    total += noshowYear;
+    lines.push("No-shows: about " + fmtUSD(noshowYear) +
+      " a year, assuming only half of them never rebook.");
+  }
+  if (reviews === "Rarely or never" || reviews === "When we remember") {
+    lines.push("Reviews: hard to put a number on, but the business that asks every time is the one Google shows first.");
+  }
+  return { total: total, lines: lines };
+}
+
 form.addEventListener("input", function () { save(); updateProgress(); });
 
 form.addEventListener("submit", function (e) {
@@ -86,20 +122,63 @@ form.addEventListener("submit", function (e) {
   }
   errorNote.hidden = true;
 
-  var lines = ["WHERE'S YOUR BUSINESS LEAKING? — 2-MINUTE CHECK", ""];
-  questionNames().forEach(function (n) {
-    var v = valueFor(n);
-    lines.push(n + ": " + (v === "" ? "(skipped)" : v));
+  // Show the instant estimate right away.
+  var est = buildEstimate();
+  var box = document.getElementById("reportBox");
+  var totalEl = document.getElementById("reportTotal");
+  var subEl = box.querySelector(".report-sub");
+  var linesEl = document.getElementById("reportLines");
+  linesEl.innerHTML = "";
+  if (est.total > 0) {
+    totalEl.textContent = fmtUSD(est.total);
+    totalEl.hidden = false;
+    subEl.textContent = "Roughly what's walking out the door every year.";
+  } else {
+    totalEl.hidden = true;
+    subEl.textContent = "Answer questions 4–6 to see a dollar estimate — we'll still run your numbers and text you the breakdown.";
+  }
+  est.lines.forEach(function (t) {
+    var li = document.createElement("li");
+    li.textContent = t;
+    linesEl.appendChild(li);
   });
-  var subject = "Leak check: " + valueFor("Your name") +
-    (valueFor("Business name") ? " — " + valueFor("Business name") : "");
-  location.href = "mailto:" + CONTACT_EMAIL +
-    "?subject=" + encodeURIComponent(subject) +
-    "&body=" + encodeURIComponent(lines.join("\n"));
+  box.hidden = false;
+  box.scrollIntoView({ behavior: "smooth", block: "nearest" });
 
-  var done = document.getElementById("doneBox");
-  done.hidden = false;
-  done.scrollIntoView({ behavior: "smooth", block: "nearest" });
+  // Send a copy of the answers to the founders.
+  var status = document.getElementById("reportStatus");
+  status.textContent = "Sending your answers to Flowmations…";
+  var payload = {
+    _subject: "Leak check: " + valueFor("Your name") +
+      (valueFor("Business name") ? " — " + valueFor("Business name") : ""),
+    _template: "table",
+    _captcha: "false"
+  };
+  questionNames().forEach(function (n) {
+    payload[n] = valueFor(n) || "(skipped)";
+  });
+  if (est.total > 0) payload["Estimated yearly leak"] = fmtUSD(est.total);
+
+  fetch(RELAY_URL, {
+    method: "POST",
+    headers: { "Content-Type": "application/json", "Accept": "application/json" },
+    body: JSON.stringify(payload)
+  }).then(function (res) {
+    if (!res.ok) throw new Error("relay error");
+    return res.json();
+  }).then(function () {
+    status.textContent = "Done — your answers are with us. Watch your texts for the full breakdown.";
+  }).catch(function () {
+    var subject = payload._subject;
+    var body = questionNames().map(function (n) {
+      return n + ": " + (valueFor(n) || "(skipped)");
+    }).join("\n");
+    status.innerHTML = "Hmm, sending didn't go through. " +
+      '<a href="mailto:' + CONTACT_EMAIL +
+      "?subject=" + encodeURIComponent(subject) +
+      "&body=" + encodeURIComponent(body) +
+      '">Tap here to email us your answers instead</a> — same result.';
+  });
 });
 
 load();

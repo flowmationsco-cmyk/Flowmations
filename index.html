@@ -3,8 +3,11 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Flowmations — Automation for HVAC &amp; Home-Service Companies</title>
+<title>Flowmations — Automation for Local Businesses</title>
 <meta name="description" content="Flowmations builds automations that recover missed calls, chase quotes, and keep your schedule full — so the busy work runs itself.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@600&display=swap" rel="stylesheet">
 <link rel="icon" href='data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><linearGradient id="g" x1="0" y1="100" x2="100" y2="0" gradientUnits="userSpaceOnUse"><stop offset="0" stop-color="%2335D0C0"/><stop offset=".55" stop-color="%233D7BF7"/><stop offset="1" stop-color="%238B5CF6"/></linearGradient></defs><g fill="none" stroke="url(%23g)" stroke-width="17" stroke-linecap="round"><path d="M16 82 C 48 92, 66 74, 60 52"/><path d="M84 18 C 52 8, 34 26, 40 48"/></g><circle cx="16" cy="82" r="11" fill="url(%23g)"/><circle cx="84" cy="18" r="11" fill="url(%23g)"/></svg>'>
 <link rel="stylesheet" href="css/style.css">
 </head>
@@ -33,6 +36,7 @@
   <div class="nav-inner">
     <a class="nav-logo" href="#top" aria-label="Flowmations home">
       <svg viewBox="0 0 100 100" width="34" height="34"><use href="#flowMark"/></svg>
+      <span class="logo-word">Flowmations</span>
     </a>
     <nav class="nav-links" id="navLinks" aria-label="Main">
       <a href="#services">Services</a>
@@ -53,7 +57,7 @@
   <section class="hero">
     <div class="container hero-grid">
       <div class="hero-copy reveal">
-        <p class="eyebrow">Automation for HVAC &amp; home-service companies</p>
+        <p class="eyebrow">Automation for local businesses</p>
         <h1>Never miss another <span class="grad-text">lead</span>.</h1>
         <p class="lede">Every unanswered call is a job your competitor booked. Flowmations builds the systems that recover missed calls, chase quiet quotes, and keep your schedule full — so the busy work runs itself and the money keeps flowing.</p>
         <div class="hero-cta">
@@ -118,9 +122,9 @@
           </label>
         </div>
         <div class="calc-result" role="status" aria-live="polite">
-          <p class="calc-label">Revenue walking away</p>
+          <p class="calc-label">Revenue walking away every month</p>
           <p class="calc-num" id="calcMonthly">$0</p>
-          <p class="calc-sub">every month — <strong id="calcYearly">$0</strong> a year</p>
+          <p class="calc-sub">That's <strong id="calcYearly">$0</strong> a year.</p>
           <p class="calc-note" id="calcCompare"></p>
         </div>
       </div>
@@ -132,7 +136,7 @@
     <div class="container">
       <div class="section-head reveal">
         <h2>Six systems. Nothing slips.</h2>
-        <p>Each one targets a specific place where service companies leak money. Run the three you need, or all six together.</p>
+        <p>Each one targets a specific place where local businesses leak money. Run the three you need, or all six together.</p>
       </div>
       <div class="cards">
         <article class="card reveal">
@@ -152,12 +156,12 @@
         </article>
         <article class="card reveal">
           <h3>Appointment Reminders</h3>
-          <p>“Your tech arrives tomorrow between 9–11 — reply C to confirm.” Fewer no-shows, fewer wasted truck rolls.</p>
+          <p>“Your appointment is tomorrow between 9–11 — reply C to confirm.” Fewer no-shows, fewer wasted mornings.</p>
           <p class="card-stat">Text reminders cut no-shows by up to 38%</p>
         </article>
         <article class="card reveal">
           <h3>Seasonal Campaigns</h3>
-          <p>Spring AC tune-ups. Fall furnace checks. Automatic campaigns to your past customers that turn an old job list into repeat revenue.</p>
+          <p>Spring specials. Holiday pushes. Slow-season promos. Automatic campaigns to your past customers that turn an old customer list into repeat revenue.</p>
           <p class="card-stat">Repeat customers spend up to 67% more</p>
         </article>
         <article class="card reveal">
@@ -205,9 +209,9 @@
         <div class="versus-col reveal">
           <h3>Without Flowmations</h3>
           <ul class="versus-list vs-without">
-            <li>Phone rings out while you're on a rooftop — the lead dials the next company on Google</li>
+            <li>Phone rings out while you're with a customer — the lead dials the next business on Google</li>
             <li>A $4,000 quote sits at “sent” for three weeks, then goes cold</li>
-            <li>The 9 a.m. no-show costs a truck roll and half the morning</li>
+            <li>The 9 a.m. no-show wastes half the morning</li>
             <li>“We should really ask for reviews” — nobody ever does</li>
             <li>Sunday night: you, a spreadsheet, and a stack of unpaid invoices</li>
           </ul>
@@ -234,18 +238,6 @@
       </div>
       <!-- Prices live only in this section — edit them here and nowhere else. -->
       <div class="tiers">
-        <article class="tier reveal">
-          <h3>Starter</h3>
-          <p class="tier-desc">Missed-Call Recovery only. The low-risk first step.</p>
-          <p class="tier-price">$300 <span>setup</span></p>
-          <p class="tier-monthly">+ $150/month</p>
-          <ul>
-            <li>Instant text-back on every missed call</li>
-            <li>Works with your existing phone number</li>
-            <li>One recovered job a month pays for it</li>
-          </ul>
-          <a class="btn btn-ghost btn-block" href="#contact">Start here</a>
-        </article>
         <article class="tier tier-featured reveal">
           <p class="tier-badge">Most popular</p>
           <h3>Growth</h3>
@@ -283,9 +275,9 @@
       </div>
       <div class="about-copy reveal">
         <h2>About Flowmations</h2>
-        <p>Flowmations is an automation studio in Eugene, Oregon, founded by <strong>Ryder Bianchini</strong> and <strong>Eli Whittaker</strong>. It started with a simple observation: service companies lose real money to busy work that has an easy fix — calls that ring out, quotes nobody chases, invoices that sit unpaid for weeks.</p>
+        <p>Flowmations is an automation studio in Eugene, Oregon, founded by <strong>Ryder Bianchini</strong> and <strong>Eli Whittaker</strong>. It started with a simple observation: local businesses lose real money to busy work that has an easy fix — calls that ring out, quotes nobody chases, invoices that sit unpaid for weeks.</p>
         <p>We build the systems that fix it, and we keep them running. We’re a small team by design: you talk directly to the people who build your automations, and your business is never ticket&nbsp;#4,872.</p>
-        <p>We work with HVAC and home-service companies in Oregon first — but if you’re further out and want the busy work gone, we’re listening.</p>
+        <p>We work with local businesses in Eugene and around Oregon first — salons, trades, studios, restaurants and more. If you’re further out and want the busy work gone, we’re listening.</p>
       </div>
     </div>
   </section>
@@ -314,7 +306,7 @@
         </details>
         <details>
           <summary>How fast does it pay for itself?</summary>
-          <p>Starter is $150 a month. If your average job is worth a few hundred dollars, one recovered call a month covers it — the calculator above does the napkin math with your own numbers. Everything past that first job is money you were leaving on the table.</p>
+          <p>Growth is $300 a month. If your average visit or job is worth a few hundred dollars, one or two recovered customers a month cover it — the calculator above does the napkin math with your own numbers. Everything past that is money you were leaving on the table.</p>
         </details>
         <details>
           <summary>Is there a contract?</summary>

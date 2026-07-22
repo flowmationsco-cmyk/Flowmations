@@ -6,6 +6,9 @@
 <title>Where's your business leaking? — Free 2-minute check | Flowmations</title>
 <meta name="description" content="Answer honestly — we'll text you a free breakdown of what the leaks are costing you per year. No spam, no strings. Flowmations, Eugene OR.">
 <link rel="icon" href='data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><linearGradient id="g" x1="0" y1="100" x2="100" y2="0" gradientUnits="userSpaceOnUse"><stop offset="0" stop-color="%2335D0C0"/><stop offset=".55" stop-color="%233D7BF7"/><stop offset="1" stop-color="%238B5CF6"/></linearGradient></defs><g fill="none" stroke="url(%23g)" stroke-width="17" stroke-linecap="round"><path d="M16 82 C 48 92, 66 74, 60 52"/><path d="M84 18 C 52 8, 34 26, 40 48"/></g><circle cx="16" cy="82" r="11" fill="url(%23g)"/><circle cx="84" cy="18" r="11" fill="url(%23g)"/></svg>'>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@600&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
@@ -33,6 +36,7 @@
   <div class="nav-inner">
     <a class="nav-logo" href="index.html" aria-label="Flowmations home">
       <svg viewBox="0 0 100 100" width="34" height="34"><use href="#flowMark"/></svg>
+      <span class="logo-word">Flowmations</span>
     </a>
     <nav class="nav-links" aria-label="Main">
       <a href="index.html#services">Services</a>
@@ -48,7 +52,7 @@
     <div class="container container-narrow">
       <p class="eyebrow">Free 2-minute check</p>
       <h1>Where's your business <span class="grad-text">leaking</span>?</h1>
-      <p class="lede">Answer honestly — we'll text you a free breakdown of what the leaks are costing you per year. No spam, no strings.</p>
+      <p class="lede">Answer honestly — you'll see what the leaks are costing you the moment you hit the button, and we'll text you a plain-English breakdown too. No spam, no strings.</p>
     </div>
   </section>
 
@@ -157,13 +161,16 @@
         </section>
 
         <div class="survey-actions">
-          <button type="submit" class="btn btn-primary">Text me my free leak report</button>
+          <button type="submit" class="btn btn-primary">Show me where I'm leaking</button>
           <span class="survey-note">Free, no spam, no strings. — Flowmations, Eugene OR</span>
         </div>
 
-        <div class="survey-done" id="doneBox" hidden>
-          <h3>Got it — check your email app.</h3>
-          <p>We've opened a pre-filled email with your answers. Hit send and your free leak report is on its way. If nothing opened, email your answers to <a id="doneMail" href="#">us directly</a>.</p>
+        <div class="survey-report" id="reportBox" hidden>
+          <p class="report-kicker">Your instant leak estimate</p>
+          <p class="report-num" id="reportTotal">$0</p>
+          <p class="report-sub">Roughly what's walking out the door every year.</p>
+          <ul class="report-lines" id="reportLines"></ul>
+          <p class="report-status" id="reportStatus"></p>
         </div>
 
       </form>

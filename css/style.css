@@ -115,7 +115,19 @@ a { color: var(--blue); }
   justify-content: space-between;
   gap: 16px;
 }
-.nav-logo { display: flex; align-items: center; }
+.nav-logo {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  text-decoration: none;
+}
+.logo-word {
+  font-family: Poppins, Montserrat, "Avenir Next", system-ui, sans-serif;
+  font-weight: 600;
+  font-size: 1.3rem;
+  letter-spacing: -0.02em;
+  color: var(--ink);
+}
 .nav-links {
   display: flex;
   align-items: center;
@@ -416,9 +428,11 @@ a { color: var(--blue); }
 
 .tiers {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
+  grid-template-columns: repeat(2, minmax(0, 1fr));
   gap: 20px;
   align-items: start;
+  max-width: 780px;
+  margin: 0 auto;
 }
 .tier {
   border: 1px solid var(--line);
@@ -766,15 +780,61 @@ a { color: var(--blue); }
 }
 .survey-note { font-size: 0.88rem; color: var(--ink-soft); }
 
-.survey-done {
+.survey-report {
   margin-top: 8px;
-  border: 1px solid var(--line);
+  border: 2px solid transparent;
+  background:
+    linear-gradient(var(--ground), var(--ground)) padding-box,
+    var(--grad) border-box;
   border-radius: var(--radius);
-  background: var(--ground-alt);
-  padding: 24px;
+  box-shadow: var(--shadow);
+  padding: 32px 28px;
+  text-align: center;
 }
-.survey-done h3 { margin-bottom: 8px; }
-.survey-done p { color: var(--ink-soft); font-size: 0.95rem; }
+.report-kicker {
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  font-size: 0.72rem;
+  font-weight: 700;
+  color: var(--ink-soft);
+}
+.report-num {
+  font-size: clamp(2.6rem, 5vw, 3.6rem);
+  font-weight: 800;
+  letter-spacing: -0.03em;
+  font-variant-numeric: tabular-nums;
+  background: var(--grad);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  margin: 4px 0 2px;
+}
+.report-sub { color: var(--ink-soft); }
+.report-lines {
+  list-style: none;
+  margin: 20px 0 0;
+  padding: 18px 0 0;
+  border-top: 1px solid var(--line);
+  display: grid;
+  gap: 10px;
+  text-align: left;
+  font-size: 0.95rem;
+  color: var(--ink-soft);
+}
+.report-lines li { position: relative; padding-left: 24px; }
+.report-lines li::before {
+  content: "→";
+  position: absolute;
+  left: 0;
+  font-weight: 700;
+  color: var(--blue);
+}
+.report-status {
+  margin-top: 18px;
+  font-size: 0.88rem;
+  font-weight: 600;
+  color: var(--ink-soft);
+}
 
 @media (max-width: 640px) {
   .q-final-row { grid-template-columns: 1fr; }
