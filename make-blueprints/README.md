@@ -1,30 +1,39 @@
 # Make.com Blueprints
 
-Home for all Flowmations Make.com scenario JSONs. Import any `.blueprint.json` file into Make with **Scenarios → Create a new scenario → ⋯ (More) → Import Blueprint**.
+Home for all Flowmations Make.com scenario JSONs. Import any `.blueprint.json` file into Make with **Scenarios → Create a new scenario**, then drag the file onto the canvas (or **⋯ → Import Blueprint**).
 
-## missed-call-instant-response.blueprint.json
+Both blueprints below do the same slide-5 demo: someone dials the demo number, hears a short voice message, and gets a text back within seconds — the same Missed-Call Recovery flow we sell, running live.
 
-The "call this number and get an instant response" demo from slide 5 of the pitch deck. Someone dials the demo number, hears a short voice message, and gets a text back within seconds — the same Missed-Call Recovery flow we sell, running live.
+## missed-call-instant-response-telnyx.blueprint.json ← start here (free)
 
-**How the scenario flows:**
+Runs on **Telnyx**, which gives roughly **$10 of free signup credit with no credit card**. The phone number (~$1/mo), inbound call minutes, and outbound texts all come out of that credit, so the demo line runs for months at $0 out of pocket. Uses only Make's built-in Webhook and HTTP modules — no paid connectors.
 
-1. **Webhook (trigger)** — Twilio hits this the moment a call comes in.
-2. **Webhook Response** — replies with TwiML so the caller hears: *"Thanks for calling Flowmations. We just sent you a text…"*
-3. **Twilio → Create a Message** — instantly texts the caller back from the same number, with a pitch and a reply-YES call to action.
+**Scenario flow:**
 
-**Setup after importing (takes ~5 minutes):**
+1. **Webhook (trigger)** — Telnyx hits this the moment a call comes in.
+2. **Webhook Response** — replies with TeXML so the caller hears: *"Thanks for calling Flowmations. We just sent you a text…"*
+3. **HTTP → Telnyx Messages API** — instantly texts the caller back from the same number.
 
-1. You need a Twilio account with an SMS-capable phone number (this is the number that goes on slide 5).
-2. Import the blueprint into Make.
-3. Click the first module (Webhook) → **Add** a new webhook → copy the webhook URL Make gives you.
-4. In Twilio: **Phone Numbers → your number → Voice Configuration → "A call comes in"** → choose **Webhook**, paste the Make URL, method **HTTP POST**. Save.
-5. Click the Twilio module (last one) → attach your Twilio connection (Account SID + Auth Token from the Twilio console).
-6. Turn the scenario **ON** (bottom-left toggle) and make sure it's set to run **immediately as data arrives**.
-7. Call the number from your cell to test — you should hear the voice line and get the text within a few seconds.
+**Setup after importing (~10 minutes):**
 
-**Editing the messages:**
+1. Sign up at telnyx.com (free credit, no card). Buy an **SMS + Voice capable US number** — it's paid from the free credit. This is the number that goes on slide 5.
+2. In Telnyx, create an API key: **Account → API Keys → Create**. Copy it.
+3. Import the blueprint into Make. Click the first module (Webhook) → **Add** a new webhook → copy the URL Make gives you.
+4. In Telnyx: **Voice → TeXML Applications → Create**. Paste the Make webhook URL as the **Voice webhook URL** (method **POST**). Save.
+5. In Telnyx: **Numbers → your number → Voice settings** → assign it to that TeXML application.
+6. In Telnyx: **Messaging → Messaging Profiles** → make sure your number is attached to a messaging profile (create the default one if asked).
+7. Back in Make, open the last module (HTTP) and replace `PASTE_YOUR_TELNYX_API_KEY_HERE` in the Authorization header with your API key — keep the word `Bearer` and the space in front of it.
+8. Turn the scenario **ON** (set to run **immediately as data arrives**) and call the number from your cell to test.
+
+**Heads up on US texting:** US carriers require a quick (free) 10DLC registration in the Telnyx portal before a local number can text reliably. Telnyx walks you through it under Messaging → 10DLC. Do this once, early — texts can be blocked until it's done. A toll-free number + free toll-free verification is an alternative that also works.
+
+## missed-call-instant-response.blueprint.json (Twilio version)
+
+Same demo on Twilio's official Make modules. Kept as a backup for when there's budget — Twilio's *free trial* can't be used for this demo because trial accounts only text **verified** numbers, so a prospect calling the line would never get the text.
+
+Setup is in the git history / module notes: webhook URL goes in Twilio's **Voice Configuration → "A call comes in"**, attach the Twilio connection on the last module.
+
+## Editing the messages (either version)
 
 - The voice message the caller hears lives in module 2 (Webhook Response) inside the `<Say>` tag.
-- The text message lives in module 3 (Twilio → Create a Message) in the **Body** field.
-
-**Cost note:** Twilio charges per call minute and per SMS (roughly a penny each), plus ~$1–2/month for the number. Make runs this on 3 operations per call, so the free Make tier handles hundreds of demo calls a month.
+- The text message lives in module 3 — the **Body** field (Twilio version) or the JSON `text` field (Telnyx version).
