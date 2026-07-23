@@ -121,6 +121,24 @@ function buildEstimate() {
 
 form.addEventListener("input", function () { save(); updateProgress(); });
 
+// Let people un-pick a radio pill by clicking it again.
+fields().forEach(function (r) {
+  if (r.type !== "radio") return;
+  r.addEventListener("click", function () {
+    if (r.dataset.wasChecked === "1") {
+      r.checked = false;
+      r.dataset.wasChecked = "";
+      save();
+      updateProgress();
+    } else {
+      fields().forEach(function (el) {
+        if (el.name === r.name) el.dataset.wasChecked = "";
+      });
+      r.dataset.wasChecked = "1";
+    }
+  });
+});
+
 form.addEventListener("submit", function (e) {
   e.preventDefault();
   var errorNote = document.getElementById("finalError");
@@ -194,4 +212,7 @@ form.addEventListener("submit", function (e) {
 });
 
 load();
+fields().forEach(function (el) {
+  if (el.type === "radio" && el.checked) el.dataset.wasChecked = "1";
+});
 updateProgress();
