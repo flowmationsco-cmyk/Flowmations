@@ -80,7 +80,7 @@ function updateProgress() {
 // and only half of no-shows are truly lost.
 var CALLS_PER_WEEK = { "0–2": 1, "3–5": 4, "6–10": 8, "More than 10": 12, "Honestly, no idea": 5 };
 var JOB_VALUE = { "Under $50": 35, "$50–$100": 75, "$100–$300": 200, "$300+": 400 };
-var NOSHOWS_PER_WEEK = { "None": 0, "1–2": 1.5, "3–5": 4, "More than 5": 6 };
+var NOSHOWS_PER_WEEK = { "None": 0, "1–2": 1.5, "3–5": 4, "More than 5": 6, "N/A": 0 };
 
 function fmtUSD(n) { return "$" + Math.round(n).toLocaleString("en-US"); }
 
@@ -106,6 +106,15 @@ function buildEstimate() {
   }
   if (reviews === "Rarely or never" || reviews === "When we remember") {
     lines.push("Reviews: hard to put a number on, but the business that asks every time is the one Google shows first.");
+  }
+  if (total > 0) {
+    var kept = total * 0.5;
+    var mult = kept / (900 * 12);
+    var line = "Your estimated saving with Flowmations: about " + fmtUSD(kept) +
+      " a year, even if we only plug half the leak";
+    if (mult >= 2) line += " — that's " + Math.round(mult) + "× what the Growth plan costs.";
+    else line += ".";
+    lines.push(line);
   }
   return { total: total, lines: lines };
 }
@@ -157,7 +166,10 @@ form.addEventListener("submit", function (e) {
   questionNames().forEach(function (n) {
     payload[n] = valueFor(n) || "(skipped)";
   });
-  if (est.total > 0) payload["Estimated yearly leak"] = fmtUSD(est.total);
+  if (est.total > 0) {
+    payload["Estimated yearly leak"] = fmtUSD(est.total);
+    payload["Estimated yearly saving (half the leak)"] = fmtUSD(est.total * 0.5);
+  }
 
   fetch(RELAY_URL, {
     method: "POST",
