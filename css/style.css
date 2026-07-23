@@ -121,12 +121,10 @@ a { color: var(--blue); }
   gap: 10px;
   text-decoration: none;
 }
-.logo-word {
-  font-family: Poppins, Montserrat, "Avenir Next", system-ui, sans-serif;
-  font-weight: 600;
-  font-size: 1.3rem;
-  letter-spacing: -0.02em;
-  color: var(--ink);
+.logo-img {
+  display: block;
+  height: 40px;
+  width: auto;
 }
 .nav-links {
   display: flex;
