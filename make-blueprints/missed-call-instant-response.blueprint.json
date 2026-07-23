@@ -1,0 +1,254 @@
+{
+    "name": "Flowmations — Call the Number, Get an Instant Response",
+    "flow": [
+        {
+            "id": 1,
+            "module": "gateway:CustomWebHook",
+            "version": 1,
+            "parameters": {
+                "hook": 0,
+                "maxResults": 1
+            },
+            "mapper": {},
+            "metadata": {
+                "designer": {
+                    "x": 0,
+                    "y": 0,
+                    "name": "Incoming call (Twilio voice webhook)"
+                },
+                "restore": {
+                    "parameters": {
+                        "hook": {
+                            "label": "Flowmations incoming call"
+                        }
+                    }
+                },
+                "parameters": [
+                    {
+                        "name": "hook",
+                        "type": "hook:gateway-webhook",
+                        "label": "Webhook",
+                        "required": true
+                    },
+                    {
+                        "name": "maxResults",
+                        "type": "number",
+                        "label": "Maximum number of results"
+                    }
+                ],
+                "interface": [
+                    {
+                        "name": "CallSid",
+                        "type": "text"
+                    },
+                    {
+                        "name": "From",
+                        "type": "text"
+                    },
+                    {
+                        "name": "To",
+                        "type": "text"
+                    },
+                    {
+                        "name": "CallStatus",
+                        "type": "text"
+                    },
+                    {
+                        "name": "FromCity",
+                        "type": "text"
+                    },
+                    {
+                        "name": "FromState",
+                        "type": "text"
+                    },
+                    {
+                        "name": "FromZip",
+                        "type": "text"
+                    },
+                    {
+                        "name": "Direction",
+                        "type": "text"
+                    }
+                ]
+            }
+        },
+        {
+            "id": 2,
+            "module": "gateway:WebhookRespond",
+            "version": 1,
+            "parameters": {},
+            "mapper": {
+                "status": "200",
+                "body": "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<Response>\n    <Pause length=\"1\"/>\n    <Say voice=\"Polly.Matthew\">Hey, thanks for calling Flowmations. We just sent you a text — check your messages. This is exactly what your customers get the moment a call slips through. Talk soon.</Say>\n</Response>",
+                "headers": [
+                    {
+                        "key": "Content-Type",
+                        "value": "text/xml"
+                    }
+                ]
+            },
+            "metadata": {
+                "designer": {
+                    "x": 300,
+                    "y": 0,
+                    "name": "Answer the call (TwiML voice reply)"
+                },
+                "restore": {},
+                "expect": [
+                    {
+                        "name": "status",
+                        "type": "uinteger",
+                        "label": "Status",
+                        "required": true
+                    },
+                    {
+                        "name": "body",
+                        "type": "any",
+                        "label": "Body"
+                    },
+                    {
+                        "name": "headers",
+                        "type": "array",
+                        "label": "Custom headers",
+                        "spec": [
+                            {
+                                "name": "key",
+                                "type": "text",
+                                "label": "Key",
+                                "required": true
+                            },
+                            {
+                                "name": "value",
+                                "type": "text",
+                                "label": "Value",
+                                "required": true
+                            }
+                        ]
+                    }
+                ]
+            }
+        },
+        {
+            "id": 3,
+            "module": "twilio:CreateMessage",
+            "version": 1,
+            "parameters": {
+                "__IMTCONN__": null
+            },
+            "mapper": {
+                "to": "{{1.From}}",
+                "from": "{{1.To}}",
+                "body": "Hey — this is Flowmations. You just called our demo line and got this text back in under a minute. Imagine every missed call at your company getting this instead of dialing your competitor. Want it on your number? Reply YES and we'll set up a free audit.",
+                "statusCallback": "",
+                "applicationSid": "",
+                "maxPrice": "",
+                "validityPeriod": "",
+                "provideFeedback": false
+            },
+            "metadata": {
+                "designer": {
+                    "x": 600,
+                    "y": 0,
+                    "name": "Instant text-back to the caller"
+                },
+                "restore": {
+                    "parameters": {
+                        "__IMTCONN__": {
+                            "label": "My Twilio connection",
+                            "data": {
+                                "scoped": "true",
+                                "connection": "twilio"
+                            }
+                        }
+                    }
+                },
+                "parameters": [
+                    {
+                        "name": "__IMTCONN__",
+                        "type": "account:twilio",
+                        "label": "Connection",
+                        "required": true
+                    }
+                ],
+                "expect": [
+                    {
+                        "name": "to",
+                        "type": "text",
+                        "label": "To",
+                        "required": true
+                    },
+                    {
+                        "name": "from",
+                        "type": "text",
+                        "label": "From",
+                        "required": true
+                    },
+                    {
+                        "name": "body",
+                        "type": "text",
+                        "label": "Body",
+                        "required": true
+                    },
+                    {
+                        "name": "statusCallback",
+                        "type": "url",
+                        "label": "Status Callback"
+                    },
+                    {
+                        "name": "applicationSid",
+                        "type": "text",
+                        "label": "Application SID"
+                    },
+                    {
+                        "name": "maxPrice",
+                        "type": "number",
+                        "label": "Max Price"
+                    },
+                    {
+                        "name": "validityPeriod",
+                        "type": "number",
+                        "label": "Validity Period"
+                    },
+                    {
+                        "name": "provideFeedback",
+                        "type": "boolean",
+                        "label": "Provide Feedback"
+                    }
+                ]
+            }
+        }
+    ],
+    "metadata": {
+        "instant": true,
+        "version": 1,
+        "scenario": {
+            "roundtrips": 1,
+            "maxErrors": 3,
+            "autoCommit": true,
+            "autoCommitTriggerLast": true,
+            "sequential": false,
+            "confidential": false,
+            "dataloss": false,
+            "dlq": false,
+            "freshVariables": false
+        },
+        "designer": {
+            "orphans": []
+        },
+        "zone": "us1.make.com",
+        "notes": [
+            {
+                "moduleIds": [1],
+                "content": "Paste this webhook's URL into your Twilio phone number → Voice Configuration → 'A call comes in' → Webhook (HTTP POST). Twilio sends the caller's number as 'From' and your Twilio number as 'To'."
+            },
+            {
+                "moduleIds": [2],
+                "content": "This TwiML is what the caller hears the instant they dial in. Edit the <Say> text to change the voice message."
+            },
+            {
+                "moduleIds": [3],
+                "content": "Sends the instant text-back to the caller from your Twilio number. Attach your Twilio connection after importing."
+            }
+        ]
+    }
+}
