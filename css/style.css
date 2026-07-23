@@ -123,15 +123,8 @@ a { color: var(--blue); }
 }
 .logo-mark {
   display: block;
-  height: 28px;
+  height: 22px;
   width: auto;
-}
-.logo-word {
-  font-family: Poppins, Montserrat, "Avenir Next", system-ui, sans-serif;
-  font-weight: 600;
-  font-size: 1.15rem;
-  letter-spacing: -0.02em;
-  color: var(--ink);
 }
 .footer-mark {
   display: block;
