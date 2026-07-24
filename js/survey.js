@@ -79,7 +79,7 @@ function updateProgress() {
 // Conservative napkin math: only 1 in 4 missed calls would have booked,
 // and only half of no-shows are truly lost.
 var CALLS_PER_WEEK = { "0–2": 1, "3–5": 4, "6–10": 8, "More than 10": 12, "Honestly, no idea": 5 };
-var JOB_VALUE = { "Under $50": 35, "$50–$100": 75, "$100–$300": 200, "$300+": 400 };
+var JOB_VALUE = { "Under $50": 35, "$50–$100": 75, "$100–$300": 200, "$300–$500": 400, "$500–$1,000": 750, "$1,000+": 1200 };
 var NOSHOWS_PER_WEEK = { "None": 0, "1–2": 1.5, "3–5": 4, "More than 5": 6, "N/A": 0 };
 
 function fmtUSD(n) { return "$" + Math.round(n).toLocaleString("en-US"); }
